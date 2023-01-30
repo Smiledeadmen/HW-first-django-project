@@ -19,6 +19,24 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
+
+def omlet(request):
+    context = {'recipe': DATA['omlet']}
+    num = int(request.GET['servings'])
+    print(context)
+    if num != 0:
+        for i in context['recipe'].values():
+            i *= num
+            print(i)
+    else:
+        return render(request, 'calculator/index.html', context)
+
+def pasta(request):
+    pass
+
+
+def buter(request):
+    pass
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
