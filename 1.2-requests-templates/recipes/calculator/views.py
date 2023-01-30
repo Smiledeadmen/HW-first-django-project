@@ -1,3 +1,5 @@
+import copy
+
 from django.shortcuts import render
 
 DATA = {
@@ -20,29 +22,25 @@ DATA = {
 }
 
 
-def omlet(request):
-    context = {'recipe': DATA['omlet']}
-    num = int(request.GET['servings'])
-    print(context)
+def calculate(request, recipes):
+    copy_recipe = copy.deepcopy(DATA[recipes])
+    context = {'recipe': copy_recipe}
+    num = request.GET.get('servings', 1)
     if num != 0:
-        for i in context['recipe'].values():
-            i *= num
-            print(i)
+        for key, value in context['recipe'].items():
+            context['recipe'][key] = int(num) * value
+        return render(request, 'calculator/index.html', context)
     else:
         return render(request, 'calculator/index.html', context)
 
+
+def omlet(request):
+    return calculate(request, 'omlet')
+
+
 def pasta(request):
-    pass
+    return calculate(request, 'pasta')
 
 
 def buter(request):
-    pass
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+    return calculate(request, 'buter')
