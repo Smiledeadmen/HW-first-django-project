@@ -17,7 +17,7 @@ from calculator.views import omlet, pasta, buter
 from django.urls import path
 
 urlpatterns = [
-    path('', index, name='index'),
+    # path('', index, name='index'),
     path('omlet/', omlet, name='omlet'),
     path('pasta/', pasta, name='pasta'),
     path('buter/', buter, name='buter')
