@@ -23,7 +23,7 @@ class ArticleInlineFormset(BaseInlineFormSet):
 #     formset = ScopeInlineFormset
 
 class ArticleInline(admin.TabularInline):
-    model = Article.scopes.through
+    model = Article.tages.through
     extra = 0
     formset = ArticleInlineFormset
 
