@@ -17,6 +17,7 @@ class Measurement(models.Model):
     temperature = models.FloatField()
     created_at = models.DateField(auto_now_add=True)
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, related_name='measurements')
+    image = models.ImageField(upload_to='images/', null=True)
 
     class Meta:
         verbose_name = 'Измерения'
